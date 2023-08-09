@@ -167,7 +167,7 @@ function SalesForm() {
                                 onChange={(ev) => {
                                     setSales({
                                         ...sales,
-                                        price: ev.target.value,
+                                        price: Number(ev.target.value),
                                     });
                                 }}
                             />
@@ -182,7 +182,7 @@ function SalesForm() {
                                 onChange={(ev) => {
                                     setSales({
                                         ...sales,
-                                        quantity: ev.target.value,
+                                        quantity: Number(ev.target.value),
                                     });
                                 }}
                             />

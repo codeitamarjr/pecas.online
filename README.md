@@ -8,9 +8,11 @@ The React Vite Garagem saas app is created using React and Vite. The app is buil
 -   [x] Warehouse Management:
 -   [x] Add Boxes: Users can add new storage boxes to the warehouse.
 -   [x] Add Parts: Users can add parts to the warehouse and associate them with specific boxes.
--   [ ] Vehicle Management: Allows users to manage vehicles and their details.
--   [ ] Physical Location Tracking: Users can track the physical location of parts within boxes, shelves, and cabinets.
--   [ ] Advanced Search: Users can search for parts and vehicles based on various criteria.
+-   [ ] Add Shelves: Users can add shelves to the warehouse.
+-   [ ] Add Cabinets: Users can add cabinets to the warehouse.
+-   [ ] Vehicle Management: Allows users to manage vehicles and their details, one vehicle can have multiple parts.
+-   [x] Physical Location Tracking: Users can track the physical location of parts within boxes, shelves, and cabinets.
+-   [x] Advanced Search: Users can search for parts and vehicles based on various criteria.
 -   [ ] Reporting: Generate reports about the inventory and status of vehicles and parts.
 -   [ ] User Roles and Permissions: Implement roles and permissions for users with different access levels.
 -   [ ] Notifications: Users receive notifications about changes and updates within the warehouse.
