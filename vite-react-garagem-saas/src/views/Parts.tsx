@@ -18,6 +18,7 @@ interface Parts {
 }
 
 function Parts() {
+    const [searchQuery, setSearchQuery] = useState("");
     const [parts, setParts] = useState<Parts[]>([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
@@ -42,7 +43,7 @@ function Parts() {
     const getParts = (page: number) => {
         setLoading(true);
         axiosClient
-            .get(`/parts?page=${page}`)
+            .get(`/parts?page=${page}&search=${searchQuery}`)
             .then(({ data }) => {
                 setLoading(false);
                 setParts(data.data);
@@ -79,6 +80,23 @@ function Parts() {
                     Adicionar
                 </Link>
             </div>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    borderRadius: "10px",
+                    marginTop: "10px",
+                }}
+                className="search"
+            >
+                <input
+                    type="text"
+                    placeholder="Procurar peças..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
+            </div>
             <div className="card animated fadeInDown">
                 <table>
                     <thead>
@@ -105,48 +123,72 @@ function Parts() {
                     )}
                     {!loading && (
                         <tbody>
-                            {parts.map((p) => (
-                                <tr key={p.id}>
-                                    {" "}
-                                    {/* Add a unique key */}
-                                    <td className="hide-on-mobile">{p.id}</td>
-                                    <td className="hide-on-mobile">
-                                        {p.brand}
-                                    </td>
-                                    <td>{p.model}</td>
-                                    <td>{p.year}</td>
-                                    <td>{p.name}</td>
-                                    <td>{p.box_number}</td>
-                                    <td>{p.quantity}</td>
-                                    <td className="hide-on-mobile">
-                                        {p.created_at}
-                                    </td>
-                                    <td className="hide-on-mobile">
-                                        {p.quantity > 0 && (
+                            {parts
+                                .filter(
+                                    (p) =>
+                                        p.brand
+                                            .toLowerCase()
+                                            .includes(
+                                                searchQuery.toLowerCase()
+                                            ) ||
+                                        p.model
+                                            .toLowerCase()
+                                            .includes(
+                                                searchQuery.toLowerCase()
+                                            ) ||
+                                        p.name
+                                            .toLowerCase()
+                                            .includes(
+                                                searchQuery.toLowerCase()
+                                            ) ||
+                                        p.year
+                                            .toLowerCase()
+                                            .includes(searchQuery.toLowerCase())
+                                )
+                                .map((p) => (
+                                    <tr key={p.id}>
+                                        {" "}
+                                        {/* Add a unique key */}
+                                        <td className="hide-on-mobile">
+                                            {p.id}
+                                        </td>
+                                        <td className="hide-on-mobile">
+                                            {p.brand}
+                                        </td>
+                                        <td>{p.model}</td>
+                                        <td>{p.year}</td>
+                                        <td>{p.name}</td>
+                                        <td>{p.box_number}</td>
+                                        <td>{p.quantity}</td>
+                                        <td className="hide-on-mobile">
+                                            {p.created_at}
+                                        </td>
+                                        <td className="hide-on-mobile">
+                                            {p.quantity > 0 && (
+                                                <Link
+                                                    to={`/sales/create?parts=${p.id}`}
+                                                    className="btn-add"
+                                                >
+                                                    Vender
+                                                </Link>
+                                            )}
+                                            &nbsp;
                                             <Link
-                                                to={`/sales/create?parts=${p.id}`}
-                                                className="btn-add"
+                                                to={`/parts/${p.id}/edit`}
+                                                className="btn-edit"
                                             >
-                                                Vender
+                                                Editar
                                             </Link>
-                                        )}
-                                        &nbsp;
-                                        <Link
-                                            to={`/parts/${p.id}/edit`}
-                                            className="btn-edit"
-                                        >
-                                            Editar
-                                        </Link>
-                                        &nbsp;
-                                        <button
-                                            onClick={() => onDelete(p)}
-                                            className="btn-delete"
-                                        >
-                                            Excluir
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
+                                            &nbsp;
+                                            <button
+                                                onClick={() => onDelete(p)}
+                                                className="btn-delete"
+                                            >
+                                                Excluir
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
                         </tbody>
                     )}
                 </table>
