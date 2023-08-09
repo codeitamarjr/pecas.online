@@ -3,7 +3,7 @@ import axios from "axios";
 const VITE_API_URL = import.meta.env.VITE_API_URL; // Import the environment variable
 
 const axiosClient = axios.create({
-    baseURL: `${VITE_API_URL}/api`, // Use the variable to construct the base URL
+    baseURL: `${VITE_API_URL}`, // Use the variable to construct the base URL
 });
 
 axiosClient.interceptors.request.use(async (config) => {
