@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
 
         Box::factory(5)->create();
 
-        Parts::factory(20)->create();
+        Parts::factory(1000)->create();
 
-        PartsSales::factory(10)->create();
+        PartsSales::factory(100)->create();
     }
 }

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Parts;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PartsResource;
 use App\Http\Requests\StorePartsRequest;
 use App\Http\Requests\UpdatePartsRequest;
-use App\Http\Resources\PartsResource;
-use App\Models\Parts;
 
 /**
  * Class PartsController
@@ -25,14 +26,23 @@ class PartsController extends Controller
      * API for managing parts
      * where('user_id', auth()->user()->id)
      */
-    public function index()
+    public function index(Request $request)
     {
-        return PartsResource::collection(
-            Parts::query()
-                ->where('user_id', auth()->user()->id)
-                ->orderBy('id', 'asc')
-                ->paginate(10)
-        );
+        $query = Parts::query()
+            ->where('user_id', auth()->user()->id)
+            ->orderBy('id', 'asc');
+
+        if ($request->has('search')) {
+            $searchQuery = $request->input('search');
+            $query->where(function ($q) use ($searchQuery) {
+                $q->where('brand', 'like', "%{$searchQuery}%")
+                    ->orWhere('model', 'like', "%{$searchQuery}%")
+                    ->orWhere('name', 'like', "%{$searchQuery}%")
+                    ->orWhere('year', 'like', "%{$searchQuery}%");
+            });
+        }
+
+        return PartsResource::collection($query->paginate(10));
     }
 
     /**

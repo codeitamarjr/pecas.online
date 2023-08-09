@@ -18,16 +18,16 @@ interface Parts {
 }
 
 function Parts() {
-    const [searchQuery, setSearchQuery] = useState("");
     const [parts, setParts] = useState<Parts[]>([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const { setNotification } = userStateContext();
+    const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
         getParts(currentPage);
-    }, [currentPage]); // Fetch data when the currentPage changes
+    }, [currentPage, searchQuery.length >= 2]); // Fetch data when the currentPage changes or the searchQuery changes
 
     const onDelete = (p: Parts) => {
         if (!window.confirm("Deseja realmente excluir?")) {
