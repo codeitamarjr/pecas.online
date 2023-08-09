@@ -1,6 +1,6 @@
-# Garagem Saas
+# Garage Parts SaaS
 
-The React Vite Garagem saas app is created using React and Vite. The app is built to manage vehicles in a garage, their parts, and their physical locations within the warehouse (e.g., boxes, shelves, and cabinets).
+The React Vite Garage Parts SaaS app is created using Laravel, React and Vite. The app is built to manage vehicles in a garage, their parts, and their physical locations within the warehouse (e.g., boxes, shelves, and cabinets).
 
 ## Features
 
@@ -29,10 +29,16 @@ To run the app locally, follow these steps:
 
 ## Backend on Laravel
 
-The backend of the app is developed using Laravel. To start the Laravel server, follow these steps:
+The backend of the app is developed using Laravel. To deploy/start the Laravel server, follow these steps:
 
-1. Navigate to the Laravel project directory.
-2. Run `php artisan serve` to start the server.
+1. Clone the project repository.
+2. Navigate to the Laravel project directory.
+3. Run `composer install` to install dependencies.
+4. Create a `.env` file and copy the contents of `.env.example` into it.
+5. Generate the application key with `php artisan key:generate --ansi`.
+6. If it is a Shared Hosting, create a database and update the database credentials in the `.env` file.
+7. Create the symbolic link with `php artisan storage:link`.
+8. Run `php artisan serve` to start the server.
 
 ## Contributing
 
@@ -40,4 +46,5 @@ Contributions are welcome! Feel free to fork the repository, make changes, and s
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
