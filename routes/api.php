@@ -1,9 +1,14 @@
 <?php
 
+use App\Models\Shelf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\BoxController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\PecaController;
+use App\Http\Controllers\Api\ShelfController;
+use App\Http\Controllers\Api\CabinetController;
+use App\Http\Controllers\Api\PartsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +29,10 @@ Route::middleware('auth:sanctum')
         });
         Route::post("/logout", [AuthController::class, 'logout']);
         Route::apiResource('/pecas', PecaController::class);
-        Route::apiResource('/parts', PecaController::class);
+        Route::apiResource('/parts', PartsController::class);
+        Route::apiResource('/boxes', BoxController::class);
+        Route::apiResource('/shelves', ShelfController::class);
+        Route::apiResource('/cabinets', CabinetController::class);
     });
 
 /**

@@ -67,6 +67,8 @@ class PecaController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @param Peca $peca
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Peca $peca)
     {

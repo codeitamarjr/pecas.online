@@ -1,23 +1,41 @@
 # Garagem Saas
 
-The react vite Garagem saas app is created using react and vite
-The app is built to manage vehicles in a garage, their parts and where they are located physically on the warehouse( Like in which shelf, row and column).
-The user will be able to log in and add vehicles, parts and locations.
+The React Vite Garagem saas app is created using React and Vite. The app is built to manage vehicles in a garage, their parts, and their physical locations within the warehouse (e.g., boxes, shelves, and cabinets).
 
-using react-router-dom for routing
+## Features
 
-inside the vite-react-garagem-saas folder
-run the following commands
+-   [x] User authentication: Users can log in to the app.
+-   [x] Warehouse Management:
+-   [x] Add Boxes: Users can add new storage boxes to the warehouse.
+-   [x] Add Parts: Users can add parts to the warehouse and associate them with specific boxes.
+-   [ ] Vehicle Management: Allows users to manage vehicles and their details.
+-   [ ] Physical Location Tracking: Users can track the physical location of parts within boxes, shelves, and cabinets.
+-   [ ] Advanced Search: Users can search for parts and vehicles based on various criteria.
+-   [ ] Reporting: Generate reports about the inventory and status of vehicles and parts.
+-   [ ] User Roles and Permissions: Implement roles and permissions for users with different access levels.
+-   [ ] Notifications: Users receive notifications about changes and updates within the warehouse.
 
-```bash
-npm run dev # to start the dev server
-npm run build # to build the app
-```
+## Getting Started
 
-Backend on Laravel
+To run the app locally, follow these steps:
 
-To start the server
+1. Clone the repository.
+2. Navigate to the `vite-react-garagem-saas` directory.
+3. Install dependencies with `npm install`.
+4. Start the development server with `npm run dev`.
+5. Build the app with `npm run build`.
 
-    ```bash
-    php artisan serve
-    ```
+## Backend on Laravel
+
+The backend of the app is developed using Laravel. To start the Laravel server, follow these steps:
+
+1. Navigate to the Laravel project directory.
+2. Run `php artisan serve` to start the server.
+
+## Contributing
+
+Contributions are welcome! Feel free to fork the repository, make changes, and submit pull requests.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

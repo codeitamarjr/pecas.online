@@ -31,9 +31,14 @@ function Default() {
 
     return (
         <div id="defaultLayout">
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0"
+            />
             <aside>
                 <Link to="/">Home</Link>
-                <Link to="/pecas">Peças</Link>
+                <Link to="/parts">Peças</Link>
+                <Link to="/boxes">Caixas</Link>
             </aside>
             <div className="content">
                 <header>

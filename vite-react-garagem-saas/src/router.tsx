@@ -7,6 +7,10 @@ import Guest from "./layouts/Guest";
 import Dashboard from "./views/Dashboard";
 import Pecas from "./views/Pecas";
 import PecaForm from "./views/PecaForm";
+import Parts from "./views/Parts";
+import PartsForm from "./views/PartsForm";
+import Boxes from "./views/Boxes";
+import BoxesForm from "./views/BoxesForm";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +36,30 @@ const router = createBrowserRouter([
             {
                 path: "/pecas/:id/edit",
                 element: <PecaForm key={"pecaUpdate"} />,
+            },
+            {
+                path: "/parts",
+                element: <Parts />,
+            },
+            {
+                path: "/parts/create",
+                element: <PartsForm key={"partsCreate"} />,
+            },
+            {
+                path: "/parts/:id/edit",
+                element: <PartsForm key={"partsUpdate"} />,
+            },
+            {
+                path: "/boxes",
+                element: <Boxes />,
+            },
+            {
+                path: "/boxes/create",
+                element: <BoxesForm key={"boxesCreate"} />,
+            },
+            {
+                path: "/boxes/:id/edit",
+                element: <BoxesForm key={"boxesUpdate"} />,
             },
         ],
     },

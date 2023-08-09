@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Box;
+use App\Models\Parts;
 use App\Models\Peca;
 use Illuminate\Database\Seeder;
 
@@ -22,6 +24,10 @@ class DatabaseSeeder extends Seeder
             'password' => \bcrypt('123456789'),
         ]);
 
+        Box::factory(10)->create();
+
         Peca::factory(10000)->create();
+
+        Parts::factory(10000)->create();
     }
 }

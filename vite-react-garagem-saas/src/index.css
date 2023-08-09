@@ -30,7 +30,8 @@ body {
     background-color: #f6f6f6;
 }
 
-input {
+input,
+select {
     outline: 0;
     background: #ffffff;
     width: 100%;
@@ -102,22 +103,42 @@ input:focus {
     text-align: center;
 }
 
+/* Base table styles */
 table {
     width: 100%;
     border-spacing: 0;
     border-collapse: collapse;
 }
 
+/* Header cell styles */
 table > thead > tr > th {
     text-align: left;
-    padding: 0.5rem 0.5rem;
+    padding: 0.8rem 0.5rem; /* Increased padding for header cells */
     background-color: #efefef;
+    font-weight: bold;
 }
 
+/* Data cell styles */
 table > tbody > tr > td {
     padding: 0.5rem 0.5rem;
     border-bottom: 1px solid #efefef;
     white-space: nowrap;
+    overflow: hidden; /* Prevent text overflow */
+    text-overflow: ellipsis; /* Show ellipsis for truncated text */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    table > thead > tr > th,
+    table > tbody > tr > td {
+        padding: 0.5rem 0.2rem; /* Adjust padding for smaller screens */
+        font-size: 14px; /* Reduce font size */
+    }
+
+    /* Hide less important columns on smaller screens */
+    .hide-on-mobile {
+        display: none;
+    }
 }
 
 .card {
