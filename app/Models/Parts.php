@@ -38,6 +38,21 @@ class Parts extends Model
         'box_id',
     ];
 
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = ucfirst($value);
+    }
+
+    public function setBrandAttribute($value)
+    {
+        $this->attributes['brand'] = ucfirst($value);
+    }
+
+    public function setModelAttribute($value)
+    {
+        $this->attributes['model'] = ucfirst($value);
+    }
+
     public function box()
     {
         return $this->belongsTo(Box::class);
@@ -46,5 +61,10 @@ class Parts extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function partsSales()
+    {
+        return $this->hasMany(PartsSales::class);
     }
 }

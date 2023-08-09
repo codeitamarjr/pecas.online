@@ -14,6 +14,7 @@ use App\Models\Box;
  * @group Box
  * @authenticated
  * API for managing boxes
+ * where('user_id', auth()->user()->id)
  */
 class BoxController extends Controller
 {

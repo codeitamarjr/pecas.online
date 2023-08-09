@@ -71,7 +71,7 @@ function Boxes() {
                     alignItems: "center",
                 }}
             >
-                <h1>Peças</h1>
+                <h1>Caixas</h1>
                 <Link to="/boxes/create" className="btn-add">
                     Adicionar
                 </Link>

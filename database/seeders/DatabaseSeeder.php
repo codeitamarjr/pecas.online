@@ -6,7 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Box;
 use App\Models\Parts;
-use App\Models\Peca;
+use App\Models\PartsSales;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,18 +16,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(5)->create();
-
         \App\Models\User::factory()->create([
             'name' => 'Test User',
             'email' => 'm@m.com',
             'password' => \bcrypt('123456789'),
         ]);
 
-        Box::factory(10)->create();
+        \App\Models\User::factory(3)->create();
 
-        Peca::factory(10000)->create();
+        Box::factory(5)->create();
 
-        Parts::factory(10000)->create();
+        Parts::factory(20)->create();
+
+        PartsSales::factory(10)->create();
     }
 }

@@ -3,44 +3,60 @@ import axiosClient from "../axios-client";
 import { Link } from "react-router-dom";
 import { userStateContext } from "../contexts/ContextProvider";
 
-interface Peca {
+interface Sale {
     id: number;
-    marca: string;
-    modelo: string;
-    nome: string;
+    part_id: number;
+    date: string;
+    price: number;
+    quantity: number;
+    notes: string;
     created_at: string;
+    part: {
+        id: number;
+        sku: string;
+        name: string;
+        description: string;
+        brand: string;
+        model: string;
+        year: string;
+        price: number;
+        image: string;
+        quantity: number;
+        box_id: number;
+        box_number: string;
+    };
 }
 
-function Pecas() {
-    const [pecas, setPecas] = useState<Peca[]>([]);
+function Sales() {
+    const [sales, setSales] = useState<Sale[]>([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const { setNotification } = userStateContext();
 
     useEffect(() => {
-        getPecas(currentPage);
+        getSales(currentPage);
     }, [currentPage]); // Fetch data when the currentPage changes
 
-    const onDelete = (p: Peca) => {
+    const onDelete = (p: Sale) => {
         if (!window.confirm("Deseja realmente excluir?")) {
             return;
         }
 
-        axiosClient.delete(`/pecas/${p.id}`).then(() => {
-            setNotification("Peça excluída com sucesso!");
-            // Update the list of pecas after deleting
-            getPecas(currentPage); // Refetch data for the current page after deletion
+        axiosClient.delete(`/sales/${p.id}`).then(() => {
+            setNotification("Registro da venda excluída com sucesso!");
+            // Update the list of sales after deleting
+            getSales(currentPage); // Refetch data for the current page after deletion
         });
     };
 
-    const getPecas = (page: number) => {
+    const getSales = (page: number) => {
         setLoading(true);
         axiosClient
-            .get(`/pecas?page=${page}`)
+            .get(`/sales?page=${page}&include=part`)
             .then(({ data }) => {
                 setLoading(false);
-                setPecas(data.data);
+                setSales(data.data);
                 setTotalPages(data.meta.last_page); // Set the total number of pages from the response
             })
             .catch(() => {
@@ -69,21 +85,17 @@ function Pecas() {
                     alignItems: "center",
                 }}
             >
-                <h1>Peças</h1>
-                <Link to="/pecas/create" className="btn-add">
-                    Adicionar
-                </Link>
+                <h1>Vendas</h1>
             </div>
             <div className="card animated fadeInDown">
                 <table>
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>Pedido #</th>
                             <th>Marca</th>
-                            <th>Modelo</th>
-                            <th>Nome</th>
-                            <th>Localização</th>
-                            <th>Criado em</th>
+                            <th>Peça</th>
+                            <th>Vendido em</th>
+                            <th>Valor</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -98,19 +110,18 @@ function Pecas() {
                     )}
                     {!loading && (
                         <tbody>
-                            {pecas.map((p) => (
+                            {sales.map((p) => (
                                 <tr key={p.id}>
                                     {" "}
                                     {/* Add a unique key */}
                                     <td>{p.id}</td>
-                                    <td>{p.marca}</td>
-                                    <td>{p.modelo}</td>
-                                    <td>{p.nome}</td>
-                                    <td>sss</td>
-                                    <td>{p.created_at}</td>
+                                    <td>{p.part.brand}</td>
+                                    <td>{p.part.name}</td>
+                                    <td>{p.date}</td>
+                                    <td>R${p.price}</td>
                                     <td>
                                         <Link
-                                            to={`/pecas/${p.id}/edit`}
+                                            to={`/sales/${p.id}/edit`}
                                             className="btn-edit"
                                         >
                                             Editar
@@ -144,4 +155,4 @@ function Pecas() {
     );
 }
 
-export default Pecas;
+export default Sales;

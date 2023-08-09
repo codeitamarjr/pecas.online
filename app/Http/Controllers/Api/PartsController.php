@@ -20,6 +20,10 @@ class PartsController extends Controller
     /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @authenticated
+     * @group Parts
+     * API for managing parts
+     * where('user_id', auth()->user()->id)
      */
     public function index()
     {
@@ -80,7 +84,10 @@ class PartsController extends Controller
     {
         // Check if the user is authorized to delete the resource
         if ($part->user_id !== auth()->user()->id) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json([
+                'id'   => $part->id,
+                'error' => 'Unauthorized'
+            ], 403);
         }
         $part->delete();
         return response()->json(null, 204);

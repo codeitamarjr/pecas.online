@@ -6,9 +6,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\BoxController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\PecaController;
+use App\Http\Controllers\Api\PartsController;
 use App\Http\Controllers\Api\ShelfController;
 use App\Http\Controllers\Api\CabinetController;
-use App\Http\Controllers\Api\PartsController;
+use App\Http\Controllers\Api\PartsSalesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,11 +29,11 @@ Route::middleware('auth:sanctum')
             return $request->user();
         });
         Route::post("/logout", [AuthController::class, 'logout']);
-        Route::apiResource('/pecas', PecaController::class);
         Route::apiResource('/parts', PartsController::class);
         Route::apiResource('/boxes', BoxController::class);
         Route::apiResource('/shelves', ShelfController::class);
         Route::apiResource('/cabinets', CabinetController::class);
+        Route::apiResource('/sales', PartsSalesController::class);
     });
 
 /**

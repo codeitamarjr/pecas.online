@@ -18,8 +18,12 @@ class PartsFactory extends Factory
      */
     public function definition(): array
     {
+        $user = User::inRandomOrder()->first();  // Get an existing user randomly
+        $box = Box::where('user_id', $user->id)->inRandomOrder()->first(); // Get an existing box of the same user
+
         return [
-            'user_id' => User::inRandomOrder()->first()->id,  // Get an existing user randomly
+            'user_id' => $user->id,
+            'box_id' => [$box->id ?? \null, null][rand(0, 1)],
 
             'sku' => $this->faker->unique()->randomNumber(5),
             'name' => ['Pneu', 'Retrovisor', 'Farol', 'Lanterna', 'Bateria'][rand(0, 4)],
@@ -30,7 +34,6 @@ class PartsFactory extends Factory
             'price' => $this->faker->randomFloat(2, 0, 1000),
             'image' => $this->faker->imageUrl(),
             'quantity' => $this->faker->randomNumber(2),
-            'box_id' => Box::inRandomOrder()->first()->id,  // Get an existing box randomly
         ];
     }
 }

@@ -43,8 +43,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function pecas()
+    public function parts()
     {
-        return $this->hasMany(Peca::class);
+        return $this->hasMany(Parts::class);
+    }
+
+    public function partsSales()
+    {
+        return $this->hasMany(PartsSales::class);
     }
 }

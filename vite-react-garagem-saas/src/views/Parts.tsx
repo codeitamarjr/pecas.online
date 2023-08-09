@@ -6,9 +6,14 @@ import { userStateContext } from "../contexts/ContextProvider";
 interface Parts {
     id: number;
     box_id: number;
+    box_number: number;
+    quantity: number;
+    number: number;
     model: string;
     brand: string;
     name: string;
+    year: string;
+    description: string;
     created_at: string;
 }
 
@@ -27,7 +32,6 @@ function Parts() {
         if (!window.confirm("Deseja realmente excluir?")) {
             return;
         }
-
         axiosClient.delete(`/parts/${p.id}`).then(() => {
             setNotification("Peça excluída com sucesso!");
             // Update the list of parts after deleting
@@ -82,8 +86,10 @@ function Parts() {
                             <th className="hide-on-mobile">Id</th>
                             <th className="hide-on-mobile">Marca</th>
                             <th>Modelo</th>
+                            <th>Ano</th>
                             <th>Nome</th>
                             <th>Caixa</th>
+                            <th>Quantidade</th>
                             <th className="hide-on-mobile">Criado em</th>
                             <th className="hide-on-mobile">Ações</th>
                         </tr>
@@ -108,12 +114,23 @@ function Parts() {
                                         {p.brand}
                                     </td>
                                     <td>{p.model}</td>
+                                    <td>{p.year}</td>
                                     <td>{p.name}</td>
-                                    <td>{p.box_id}</td>
+                                    <td>{p.box_number}</td>
+                                    <td>{p.quantity}</td>
                                     <td className="hide-on-mobile">
                                         {p.created_at}
                                     </td>
                                     <td className="hide-on-mobile">
+                                        {p.quantity > 0 && (
+                                            <Link
+                                                to={`/sales/create?parts=${p.id}`}
+                                                className="btn-add"
+                                            >
+                                                Vender
+                                            </Link>
+                                        )}
+                                        &nbsp;
                                         <Link
                                             to={`/parts/${p.id}/edit`}
                                             className="btn-edit"

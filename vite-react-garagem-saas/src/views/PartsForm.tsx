@@ -166,7 +166,7 @@ function PartsForm() {
                                 value={parts.box_id || ""}
                                 onChange={handleInputChange}
                             >
-                                <option value="">Select a box</option>
+                                <option value="">Selecione uma caixa</option>
                                 {listBoxes}
                             </select>
 

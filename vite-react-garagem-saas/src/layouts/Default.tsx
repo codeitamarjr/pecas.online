@@ -39,6 +39,7 @@ function Default() {
                 <Link to="/">Home</Link>
                 <Link to="/parts">Peças</Link>
                 <Link to="/boxes">Caixas</Link>
+                <Link to="/sales">Vendas</Link>
             </aside>
             <div className="content">
                 <header>

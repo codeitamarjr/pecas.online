@@ -26,7 +26,6 @@ function PartsForm() {
             axiosClient
                 .get(`/boxes/${id}`)
                 .then(({ data }) => {
-                    boxes;
                     setLoading(false);
                     setBoxes(data.data);
                 })
