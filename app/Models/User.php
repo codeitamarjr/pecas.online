@@ -52,4 +52,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(PartsSales::class);
     }
+
+    public function subscription()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function latestActiveSubscription()
+    {
+        return $this->hasOne(Subscription::class)
+            ->where('status', 'activate')
+            ->latestOfMany();
+    }
 }
