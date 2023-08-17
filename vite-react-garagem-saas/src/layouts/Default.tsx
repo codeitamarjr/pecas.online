@@ -1,7 +1,8 @@
-import { Link, Navigate, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { userStateContext } from "../contexts/ContextProvider";
 import { useEffect } from "react";
 import axiosClient from "../axios-client";
+import LandingPage from "../pages/LandingPage";
 
 interface User {
     name: string;
@@ -12,7 +13,7 @@ function Default() {
 
     // If the user is not logged in, redirect to the login page
     if (!token) {
-        return <Navigate to="/login" />;
+        return <LandingPage />;
     }
 
     const onLogout = (ev: React.MouseEvent<HTMLAnchorElement>) => {
