@@ -23,7 +23,7 @@ function LandingPage() {
                     </p>
                 </div>
                 <div className="hero-right">
-                    <img src="public/screencapture.png" alt="System preview" />
+                    <img src="screencapture.png" alt="System preview" />
                 </div>
             </div>
             <div className="main-content">
