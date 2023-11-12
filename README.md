@@ -2,6 +2,11 @@
 
 The React Vite Garage Parts SaaS app is created using Laravel, React and Vite. The app is built to manage vehicles in a garage, their parts, and their physical locations within the warehouse (e.g., boxes, shelves, and cabinets).
 
+## Live Project
+
+[pecas.online](https://pecas.online)
+
+
 ## Features
 
 -   [x] User authentication: Users can log in to the app.
